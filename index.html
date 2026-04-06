@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Esquina del Sabor - Restaurante & Bar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .cta-btn {
+            background: #ff6b6b;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><circle fill="%23ff6b6b" opacity="0.3" cx="300" cy="200" r="150"/><circle fill="%23764ba2" opacity="0.2" cx="900" cy="400" r="200"/></svg>');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        /* Features */
+        .features {
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        /* Map */
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .chat-window.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.bot {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .chat-input {
+            padding: 1.5rem;
+            background: white;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 25px;
+            outline: none;
+        }
+
+        .chat-input button {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .chat-window {
+                width: 90vw;
+                height: 70vh;
+                right: 5vw;
+            }
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">🍽️ La Esquina del Sabor</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#ubicacion">Ubicación</a></li>
+                <li><a href="#reservas">Reservas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <a href="#reservas" class="cta-btn">Reservar Mesa</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>La Esquina del Sabor</h1>
+            <p>Disfruta de la mejor comida casera en un ambiente familiar. ¡Reserva tu mesa ahora!</p>
+            <a href="#reservas" class="cta-btn">Reservar Ahora</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="servicios" class="container">
+        <h2>Nuestros Servicios</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                <h3>Comida Casera</h3>
+                <p>Platos tradicionales preparados con ingredientes frescos todos los días.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-wine-bottle"></i></div>
+                <h3>Bebidas Premium</h3>
+                <p>La mejor selección de vinos, cervezas artesanales y cócteles.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                <h3>Reservas Fáciles</h3>
+                <p>Reserva tu mesa en línea o por WhatsApp en menos de 1 minuto.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="ubicacion" class="container">
+        <h2>Encuéntranos</h2>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.614057614614!2d-74.08168948539999!3d4.609709996589999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDM2JzM0LjciTiA3NMKwMDQnNTIuNSJX!5e0!3m2!1ses!2sco!4v1699999999999" 
+            width="100%" 
+            height="400" 
+            style="border:0; border-radius:15px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div style="text-align: center; margin-top: 2rem;">
+            <p><strong>📍 Dirección:</strong> Carrera 7 # 45-20, Centro</p>
+            <p><strong>📱 WhatsApp:</strong> +57 300 123 4567</p>
+            <p><strong>🕒 Horario:</strong> Lun-Dom 11:00 AM - 10:00 PM</p>
+        </div>
+    </section>
+
+    <!-- Reservations -->
+    <section id="reservas" class="container">
+        <h2>Reserva tu Mesa</h2>
+        <form class="reservation-form" id="reservationForm">
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label>Hora</label>
+                <input type="time" id="time" required>
+            </div>
+            <div class="form-group">
+                <label>Número de Personas</label>
+                <select id="people" required>
+                    <option value="">Selecciona...</option>
+                    <option value="1">1 persona</option>
+                    <option value="2">2 personas</option>
+                    <option value="3-4">3-4 personas</option>
+                    <option value="5-6">5-6 personas</option>
+                    <option value="7+">7+ personas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Observaciones</label>
+                <textarea rows="3" id="comments" placeholder="Alergias, preferencias especiales..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-calendar-check"></i> Confirmar Reserva
+            </button>
+        </form>
+    </section>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div>🤖 Asistente Virtual</div>
+                <i class="fas fa-times" id="closeChat"></i>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    ¡Hola! 👋 Soy el asistente de <strong>La Esquina del Sabor</strong>. 
+                    ¿En qué puedo ayudarte hoy?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+                <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reservation form
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('¡Reserva confirmada! Te contactaremos pronto para confirmar.');
+                this.reset();
